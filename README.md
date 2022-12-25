@@ -1,2 +1,2 @@
 # guessNumberGame
-Jogo em que o usuario tenta advinhar qual numero esta armazenado entre 1 a 100.
+Jogo em que o usuario tenta adivinhar qual numero esta armazenado entre 1 a 100.
