@@ -11,7 +11,7 @@
 // main: Função que guarda todo o código que será executado
 // pelo compilador quando abrir este arquivo.
 int main(void){
-    // cout é a função padrão do C++ que lida com as saídas de um programa pelo terminal.
+    // cout é a função padrão do C++ que lida com as saídas de um programa pelo terminal. cin é a função que lida com as entradas do usuário.
     std::cout << "****************************\n";
     std::cout << "Welcome to the guessing game" << std::endl;
     std::cout << "****************************\n\n";
@@ -21,6 +21,11 @@ int main(void){
     std::cout << "Type a number between 1 and 100: ";
     std::cin >> guessingNumber;
 
-    std::cout << "Secret number is: " << secretNumber << std::endl;
-    std::cout << "Typed number is: " << guessingNumber << std::endl;
+    if(secretNumber == guessingNumber) {
+        std::cout << "Congrats, You win!" << std::endl;
+    } else if(guessingNumber > secretNumber) {
+        std::cout << "Sorry, the number choised was higher than the secret number." << std::endl;
+    } else if (guessingNumber < secretNumber) {
+        std::cout << "Sorry, the number choised was lower than the secret number." << std::endl;
+    }
 }
