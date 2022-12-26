@@ -16,16 +16,17 @@ int main(void){
     std::cout << "Welcome to the guessing game" << std::endl;
     std::cout << "****************************\n\n";
 
-    const int secretNumber = 42;
+    const int SECRET_NUMBER = 42;
     int guessingNumber;
+
     std::cout << "Type a number between 1 and 100: ";
     std::cin >> guessingNumber;
 
-    if(secretNumber == guessingNumber) {
+    if(SECRET_NUMBER == guessingNumber) {
         std::cout << "Congrats, You win!" << std::endl;
-    } else if(guessingNumber > secretNumber) {
+    } else if(guessingNumber > SECRET_NUMBER) {
         std::cout << "Sorry, the number choised was higher than the secret number." << std::endl;
-    } else if (guessingNumber < secretNumber) {
+    } else if (guessingNumber < SECRET_NUMBER) {
         std::cout << "Sorry, the number choised was lower than the secret number." << std::endl;
     }
 }
