@@ -13,27 +13,34 @@
 int main(void){
     // cout é a função padrão do C++ que lida com as saídas de um programa pelo terminal. cin é a função que lida com as entradas do usuário.
     std::cout << "****************************\n";
-    std::cout << "Welcome to the guessing game" << std::endl;
+    std::cout << "Welcome to the guessing game!" << std::endl;
     std::cout << "****************************\n\n";
 
-    const int SECRET_NUMBER = 42;
+    const int SECRET_NUMBER = 100;
     int guessingNumber;
     bool userIsWrong = true;
     int triesLeft = 5;
+    double userPoints = 1000;
 
+    // loop para ficar rodando o jogo enquanto o usuario nao acertar e ainda estiver tentativar disponiveis.
     while(userIsWrong and triesLeft) {
 
         std::cout << "Type a number between 1 and 100: ";
         std::cin >> guessingNumber;
         if(SECRET_NUMBER == guessingNumber) {
         std::cout << "Congrats, You win!" << std::endl;
+        std::cout << "Points:" << userPoints << std::endl;
         userIsWrong = false;
         } else if(guessingNumber > SECRET_NUMBER) {
             --triesLeft;
-            std::cout << "Sorry, the number choised was higher than the secret number. You have " << triesLeft << "tries left." << std::endl;
+            std::cout << "Sorry, the number choised was higher than the secret number. You have " << triesLeft << " tries left." << std::endl;
         } else if (guessingNumber < SECRET_NUMBER) {
             --triesLeft;
             std::cout << "Sorry, the number choised was lower than the secret number. You have " << triesLeft << " tries left." << std::endl;
         }
+        // Conta que se o usuário digitar o número mais longe o possível do correto (numero escolhido = 1; usuário digita 5 vezes o numero 100) resulta em uma pontuação zerada. 
+        userPoints = (userPoints - (abs(SECRET_NUMBER - guessingNumber) * 2)) - 2;
     }
+
+    if(userIsWrong) std::cout << "Sorry, you lose. Your pontuation was: " << userPoints << std::endl;
 }
