@@ -18,15 +18,19 @@ int main(void){
 
     const int SECRET_NUMBER = 42;
     int guessingNumber;
+    bool userIsWrong = true;
 
-    std::cout << "Type a number between 1 and 100: ";
-    std::cin >> guessingNumber;
+    while(userIsWrong) {
 
-    if(SECRET_NUMBER == guessingNumber) {
+        std::cout << "Type a number between 1 and 100: ";
+        std::cin >> guessingNumber;
+        if(SECRET_NUMBER == guessingNumber) {
         std::cout << "Congrats, You win!" << std::endl;
-    } else if(guessingNumber > SECRET_NUMBER) {
-        std::cout << "Sorry, the number choised was higher than the secret number." << std::endl;
-    } else if (guessingNumber < SECRET_NUMBER) {
-        std::cout << "Sorry, the number choised was lower than the secret number." << std::endl;
+        userIsWrong = false;
+        } else if(guessingNumber > SECRET_NUMBER) {
+            std::cout << "Sorry, the number choised was higher than the secret number. Try again" << std::endl;
+        } else if (guessingNumber < SECRET_NUMBER) {
+            std::cout << "Sorry, the number choised was lower than the secret number. Try again." << std::endl;
+        }
     }
 }
