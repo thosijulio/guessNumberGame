@@ -19,8 +19,9 @@ int main(void){
     const int SECRET_NUMBER = 42;
     int guessingNumber;
     bool userIsWrong = true;
+    int triesLeft = 5;
 
-    while(userIsWrong) {
+    while(userIsWrong and triesLeft) {
 
         std::cout << "Type a number between 1 and 100: ";
         std::cin >> guessingNumber;
@@ -28,9 +29,11 @@ int main(void){
         std::cout << "Congrats, You win!" << std::endl;
         userIsWrong = false;
         } else if(guessingNumber > SECRET_NUMBER) {
-            std::cout << "Sorry, the number choised was higher than the secret number. Try again" << std::endl;
+            --triesLeft;
+            std::cout << "Sorry, the number choised was higher than the secret number. You have " << triesLeft << "tries left." << std::endl;
         } else if (guessingNumber < SECRET_NUMBER) {
-            std::cout << "Sorry, the number choised was lower than the secret number. Try again." << std::endl;
+            --triesLeft;
+            std::cout << "Sorry, the number choised was lower than the secret number. You have " << triesLeft << " tries left." << std::endl;
         }
     }
 }
