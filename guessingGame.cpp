@@ -29,6 +29,8 @@ int main(void){
         std::cin >> guessingNumber;
         if(SECRET_NUMBER == guessingNumber) {
         std::cout << "Congrats, You win!" << std::endl;
+        std::cout.precision(2);
+        std::cout << std::fixed;
         std::cout << "Points:" << userPoints << std::endl;
         userIsWrong = false;
         } else if(guessingNumber > SECRET_NUMBER) {
@@ -38,9 +40,13 @@ int main(void){
             --triesLeft;
             std::cout << "Sorry, the number choised was lower than the secret number. You have " << triesLeft << " tries left." << std::endl;
         }
-        // Conta que se o usuário digitar o número mais longe o possível do correto (numero escolhido = 1; usuário digita 5 vezes o numero 100) resulta em uma pontuação zerada. 
-        userPoints = (userPoints - (abs(SECRET_NUMBER - guessingNumber) * 2)) - 2;
+        // Conta que se o usuário digitar o número mais longe o possível do correto (numero escolhido = 1; usuário digita 5 vezes o numero 100) resulta em uma pontuação zerada.
+        userPoints = (userPoints - (abs(SECRET_NUMBER - guessingNumber) * 1.5)) - 51.500;
     }
 
-    if(userIsWrong) std::cout << "Sorry, you lose. Your pontuation was: " << userPoints << std::endl;
+    if(userIsWrong) {
+        std::cout.precision(2);
+        std::cout << std::fixed;
+        std::cout << "Sorry, you lose. Your pontuation was: " << userPoints << std::endl;
+    }
 }
