@@ -28,59 +28,59 @@ int main(void) {
     
 
     // variáveis que ajudam a fazer a conta chegar a 0 caso o usuário digite a pior combinação possível de resultado para cada nível escolhido.
-    float multipliedByDificulty = 0;
-    float sumByDificulty = 0;
-    int dificulty;
+    float multipliedByDifficulty = 0;
+    float sumByDifficulty = 0;
+    int difficulty;
 
     // cout é a função padrão do C++ que lida com as saídas de um programa pelo terminal. cin é a função que lida com as entradas do usuário.
     std::cout << "****************************\n";
     std::cout << "Welcome to the guessing game!" << std::endl;
     std::cout << "****************************\n\n";
-    std::cout << "First of all, select your dificulty:" << std::endl;
-    std::cout << "1. Extreme (3 chances);" << std::endl;
-    std::cout << "2. Hard (5 chances);" << std::endl;
-    std::cout << "3. Medium (8 chances);" << std::endl;
-    std::cout << "4. Easy (12 chances);" << std::endl;
-    std::cout << "5. Very Easy (15 chances)\n\n";
+    std::cout << "First of all, select your difficulty:" << std::endl;
+    std::cout << "1. Extreme (3 attemps);" << std::endl;
+    std::cout << "2. Hard (5 attemps);" << std::endl;
+    std::cout << "3. Medium (8 attemps);" << std::endl;
+    std::cout << "4. Easy (12 attemps);" << std::endl;
+    std::cout << "5. Very Easy (15 attemps)\n\n";
     
     std::cout << "Option: " << std::endl;
-    std::cin >> dificulty;
+    std::cin >> difficulty;
     std::map<int, bool> numbersTriedByuser;
 
     // bloco que altera o sistema de pontuação e o número de tentativas de acordo com a dificuldade escolhida pelo usuário.
-    switch (dificulty) {
+    switch (difficulty) {
         case 1:
             triesLeft = 3;
-            multipliedByDificulty = 3.4;
-            sumByDificulty = 2.667;
+            multipliedByDifficulty = 3.4;
+            sumByDifficulty = 2.667;
             break;
 
         case 2:
             triesLeft = 5;
-            multipliedByDificulty = 2.1;
-            sumByDificulty = 7; 
+            multipliedByDifficulty = 2.1;
+            sumByDifficulty = 7; 
             break;
 
         case 3:
             triesLeft = 8;
-            multipliedByDificulty = 1.278;
-            sumByDificulty = 1; 
+            multipliedByDifficulty = 1.278;
+            sumByDifficulty = 1; 
             break;
         
         case 4:
             triesLeft = 12;
-            multipliedByDificulty = 0.857;
-            sumByDificulty = 0.667; 
+            multipliedByDifficulty = 0.857;
+            sumByDifficulty = 0.667; 
             break;
         
         case 5:
             triesLeft = 15;
-            multipliedByDificulty = 0.68;
-            sumByDificulty = 0.33339;
+            multipliedByDifficulty = 0.68;
+            sumByDifficulty = 0.33339;
             break;
 
         default:
-            throw std::invalid_argument("Insert a integer between 1 and 5 to select dificulty.");
+            throw std::invalid_argument("Insert a integer between 1 and 5 to select difficulty.");
             break;
     }
 
@@ -114,10 +114,10 @@ int main(void) {
 
         // Bloco que faz a checagem e altera a pontuação do usuario.
         // se o usuário digitar o número mais longe o possível do correto (numero escolhido = 1; usuário digita 5 vezes o numero 100) resulta em uma pontuação zerada.+
-        if(userPoints - abs((SECRET_NUMBER - guessingNumber) * multipliedByDificulty) + sumByDificulty < userPoints) {
-            userPoints = userPoints - abs((SECRET_NUMBER - guessingNumber) * multipliedByDificulty) + sumByDificulty;
+        if(userPoints - abs((SECRET_NUMBER - guessingNumber) * multipliedByDifficulty) + sumByDifficulty < userPoints) {
+            userPoints = userPoints - abs((SECRET_NUMBER - guessingNumber) * multipliedByDifficulty) + sumByDifficulty;
         } else {
-            userPoints = userPoints - ((userPoints - abs((SECRET_NUMBER - guessingNumber) * multipliedByDificulty) + sumByDificulty) - userPoints);
+            userPoints = userPoints - ((userPoints - abs((SECRET_NUMBER - guessingNumber) * multipliedByDifficulty) + sumByDifficulty) - userPoints);
         }
     }
 
