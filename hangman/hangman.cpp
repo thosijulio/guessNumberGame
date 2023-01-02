@@ -16,21 +16,39 @@ bool letterExist(char letter) {
 }
 
 int main() {
-  bool triesLeft = 5;
+  int triesLeft = 5;
   char letter;
   std::map<char, bool> userTries;
 
   std::cout << "Welcome to the hangman game!\n";
 
   while (!userWin && !gameOver) {
-  std::cout << "Digite uma letra: ";
-  std::cin >> letter;
+    std::cout << "Digite uma letra: ";
+    std::cin >> letter;
+
+    if (userTries[letter]) {
+      std::cout << "Você ja digitou essa letra! Tente outra\n";
+      continue;
+    }
+
+    userTries[letter] = true;
 
     if (letterExist(letter)) {
       std::cout << "Você acertou! Continue\n";
     } else {
       std::cout << "Você errou! Tente novamente\n";
     }
-    std::cout << letter << "\n";
-  }
+
+    for (char letter : SECRET_WORD) {
+      if (userTries[letter]) {
+        std::cout << letter << " ";
+      } else {
+        std::cout << "_ ";
+      }
+    }
+
+    std::cout << "\n";
+
+    --triesLeft;
+   }
 }
