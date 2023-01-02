@@ -6,11 +6,12 @@ bool userWin = false;
 bool gameOver = false;
 
 bool letterExist(char letter) {
-  for (int index = 0; index < SECRET_WORD.size(); ++ index) {
-    if (letter == SECRET_WORD[index]) {
+  for (char secretWordLetter : SECRET_WORD) {
+    if (letter == secretWordLetter) {
       return true;
-    } else return false;
+    }
   }
+  return false;
 }
 
 int main() {
