@@ -5,6 +5,9 @@
 // iostream é uma biblioteca que possui métodos para o fluxo de entra e saída de dados.
 #include<iostream>
 
+#include<string>
+#include<map>
+
 #include<cstdlib>
 /* marcador para uso das funções padrão de C++ = "using namespace std". Seu uso não é aconselhavel por alguns motivos,
    incluindo os debatidos nessa questão no StackOverflow: https://stackoverflow.com/questions/1452721/why-is-using-namespace-std-considered-bad-practice
@@ -42,7 +45,7 @@ int main(void) {
     
     std::cout << "Option: " << std::endl;
     std::cin >> dificulty;
-    int numbersTriedByuser[dificulty];
+    std::map<int, bool> numbersTriedByuser;
 
     // bloco que altera o sistema de pontuação e o número de tentativas de acordo com a dificuldade escolhida pelo usuário.
     switch (dificulty) {
@@ -84,17 +87,23 @@ int main(void) {
     // loop para ficar rodando o jogo enquanto o usuario nao acertar e ainda estiver tentativar disponiveis.
     while(userIsWrong and triesLeft) {
 
-        // Pega o numero digitado pelo usuario e em seguida coloca no array de numeros ja escolhidos.
+        // Pega o numero digitado pelo usuario e em seguida coloca na string de numeros ja escolhidos.
         std::cout << "Type a number between 1 and 100: ";
         std::cin >> guessingNumber;
-        numbersTriedByuser[triesLeft - triesLeft] = guessingNumber;
 
-        if(SECRET_NUMBER == guessingNumber) {
-        std::cout << "Congrats, You win!" << std::endl;
-        std::cout.precision(2);
-        std::cout << std::fixed;
-        std::cout << "Points: " << userPoints << std::endl;
-        userIsWrong = false;
+        if (numbersTriedByuser[guessingNumber]) {
+            std::cout << "Sorry, you already tried this number. Try again.\n";
+            continue;
+        }
+
+        numbersTriedByuser[guessingNumber] = true;
+
+        if (SECRET_NUMBER == guessingNumber) {
+            std::cout << "Congrats, You win!" << std::endl;
+            std::cout.precision(2);
+            std::cout << std::fixed;
+            std::cout << "Points: " << userPoints << std::endl;
+            userIsWrong = false;
         } else if(guessingNumber > SECRET_NUMBER) {
             --triesLeft;
             std::cout << "Sorry, the number choised was higher than the secret number. You have " << triesLeft << " tries left." << std::endl;
